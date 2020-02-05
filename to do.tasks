@@ -1,0 +1,32 @@
+CREAR MODELO DE DATOS:
+    ☐ usuario
+    ☐ responsabilidades:
+        ☐ nombre
+        ☐ descripcion
+        ☐ franja horaria
+        ☐ valor
+
+
+    
+    ☐ recompensas:
+        ☐ nombre
+        ☐ valor
+        ☐ completada
+
+
+
+
+
+
+
+RUTAS RESPONSABILIDADES:
+    ☐ POST crearlas
+    ☐ GET de traerme todas
+    ☐ GET de traerme una
+    ☐ PUT para editar
+    ☐ DELETE de borrar una
+
+
+
+
+    
