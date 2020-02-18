@@ -26,19 +26,36 @@ export class TasksList extends Component {
     render(){
         return(
             <section>
+                {/* imagen cabecera task */}
                 <header className="header-task">
-                    <figure className="text-center">
-                        <img className="img-task" src={ImageTask}/>
-                        <h1 className="mt-0">My Tasks</h1>
 
+                    <figure className="text-center mb-0">
+                        <img className="img-task" src={ImageTask}/>
+                        <h1 className="mt-0 mb-0">My Tasks</h1>
                     </figure>
+
                 </header>
-                <TaskForm></TaskForm>
-                <div className="row">
-                    <ul>
-                        {this.state.tasks.map((theTask, idx) => <li key={idx} {...theTask}>{theTask.name}</li>)}
-                    </ul>
+
+                <div class="background_titles">
+                    <h3 class="body_titles ml-4">morning</h3>
                 </div>
+
+                <div className="row ml-4">
+                    <form>
+                        {this.state.tasks.map((theTask, idx) => <li key={idx} {...theTask}>{theTask.name}</li>)}
+                    </form>
+                </div>
+
+                <div class="background_titles">
+                    <h3 class="body_titles ml-4">afternoon</h3>
+                </div>
+
+                {/* botón de añadir una tarea */}
+                <div className="ml-4">
+                    <TaskForm></TaskForm>
+                </div>
+
+
             </section>
         )
     }
