@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import TaskServices from '../service/my-services'
 import { TaskForm } from './taskForm'
 import ImageTask from '../images/ilustracion_tasks.png'
+import { Button, Form, Col, Row, Container } from 'react-bootstrap'
 
 
 export class TasksList extends Component {
@@ -41,9 +42,17 @@ export class TasksList extends Component {
                 </div>
 
                 <div className="row ml-4">
-                    <form>
-                        {this.state.tasks.map((theTask, idx) => <li key={idx} {...theTask}>{theTask.name}</li>)}
-                    </form>
+                    <Form>
+                        
+                        {this.state.tasks.map((theTask, idx) => <Form.Check {...theTask}
+                                                                          
+                                                                            id={idx}
+                                                                            label={theTask.name}
+                                                                />)}
+
+
+                        
+                    </Form>
                 </div>
 
                 <div className="background_titles">
@@ -52,8 +61,18 @@ export class TasksList extends Component {
 
                 {/* botón de añadir una tarea */}
                 <div className="ml-4">
-                    <TaskForm></TaskForm>
+                    <Container>
+                        <Row>
+                            <Col>
+                                <TaskForm></TaskForm>
+                            </Col>
+                            <Col>
+                                <Button className="btn btn-dark">Remove task</Button>
+                            </Col>
+                        </Row> 
+                    </Container>
                 </div>
+
 
 
             </section>
