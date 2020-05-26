@@ -36,8 +36,8 @@ export class TasksList extends Component {
 
                 </header>
 
-                <div class="background_titles">
-                    <h3 class="body_titles ml-4">morning</h3>
+                <div className="background_titles">
+                    <h3 className="body_titles ml-4">morning</h3>
                 </div>
 
                 <div className="row ml-4">
@@ -46,8 +46,8 @@ export class TasksList extends Component {
                     </form>
                 </div>
 
-                <div class="background_titles">
-                    <h3 class="body_titles ml-4">afternoon</h3>
+                <div className="background_titles">
+                    <h3 className="body_titles ml-4">afternoon</h3>
                 </div>
 
                 {/* botón de añadir una tarea */}

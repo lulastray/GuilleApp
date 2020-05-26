@@ -3,7 +3,7 @@ import axios from 'axios'
 export default class TaskService {
 
     constructor(){ // no me acuerdo la diferencia entre esto y 
-        this.service = axios.create ({ //esto
+        this.service = axios.create ({
             baseURL: 'http://localhost:3000/api/'
         })
     }

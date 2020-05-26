@@ -1,8 +1,10 @@
 const express = require('express')
 const router = express.Router()
+const cors = require ('cors')
 
 const Task = require('../models/Tasks')
 
+router.use(cors())
 
 router.post('/new_task', (req, res) => {
     console.log("new task back", req.body)
