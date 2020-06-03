@@ -5,7 +5,11 @@ CREAR MODELO DE DATOS:
         ☐ descripcion
         ☐ franja horaria
         ☐ valor
-
+    ☐ TaskProgress
+        ☐ id_task
+        ☐ createdAt
+        ☐ updatedAt
+        ☐ status
 
     
     ☐ recompensas:
@@ -27,6 +31,8 @@ RUTAS RESPONSABILIDADES:
     ☐ DELETE de borrar una
 
 
-
+TASK LIST:
+    ☐ Que cuando chequee una se ponga en pending y lo tenga que confirma padre/madre
+    ☐ 
 
     

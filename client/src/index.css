@@ -11,3 +11,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.btn_green {
+  background-color: #BDE0BE;
+  color: rgb(36, 36, 36)
+}
+
+.btn_yellow {
+  background-color: #FFEB99;
+  color:rgb(36, 36, 36)
+}
+
+.btn_red {
+  background-color: #E17D7D;
+  color: rgb(36, 36, 36)
+}
+
+.btn_font{
+  font-size: 0.8em;
+}
+
+.menu{
+  background-color: #EA876D
+}

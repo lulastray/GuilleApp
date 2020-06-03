@@ -38,7 +38,7 @@ export class TasksList extends Component {
                 </header>
 
                 <div className="background_titles">
-                    <h3 className="body_titles ml-4">morning</h3>
+                    <h3 className="body_titles ml-4">To do:</h3>
                 </div>
 
                 <div className="row ml-4">
@@ -55,19 +55,16 @@ export class TasksList extends Component {
                     </Form>
                 </div>
 
-                <div className="background_titles">
-                    <h3 className="body_titles ml-4">afternoon</h3>
-                </div>
-
+            
                 {/* botón de añadir una tarea */}
-                <div className="ml-4">
-                    <Container>
+                <div className="mt-5">
+                    <Container fluid>
                         <Row>
                             <Col>
                                 <TaskForm></TaskForm>
                             </Col>
                             <Col>
-                                <Button className="btn btn-dark">Remove task</Button>
+                                <Button className="btn btn_red btn_font">Remove task</Button>
                             </Col>
                         </Row> 
                     </Container>

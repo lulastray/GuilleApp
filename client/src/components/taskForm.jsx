@@ -52,7 +52,7 @@ export class TaskForm extends Component {
     render() {
         return (
             <section>
-                <Button className="btn btn-dark" onClick={this.handleShow}>Add new task</Button>
+                <Button className="btn btn_yellow btn_font" size="lg" onClick={this.handleShow}>New task</Button>
                 
                 <Modal show={this.state.show} onHide={this.handleClose}>
                     <Modal.Header closeButton>

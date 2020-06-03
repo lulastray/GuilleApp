@@ -12,22 +12,26 @@ const path         = require('path');
 const session    = require("express-session");
 const MongoStore = require('connect-mongo')(session);
 const flash      = require("connect-flash");
+const cors = require("cors")
     
-
-mongoose
-  .connect('mongodb://localhost/nomorepunishment', {useNewUrlParser: true})
-  .then(x => {
-    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
-  })
-  .catch(err => {
-    console.error('Error connecting to mongo', err)
-  });
+require("./configs/mongoose.configs")
 
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
 
+//middleware cors
+// const whitelist= ['http://localhost:5000']
+// const corsOptions = {
+//   origin: (origin, cb) => {
+//     const originIsWhitelisted = whitelist.includes(origin);
+//     cb(null, originIsWhitelisted)
+//   },
+//   credentials: true
+// }
+
+// app.use(cors(corsOptions))
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -75,8 +79,8 @@ app.use(flash());
 require('./passport')(app);
     
 
-const api = require('./routes/api.routes');
-app.use('/api', api);
+const index = require('./routes/index');
+app.use('/', index);
 
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
