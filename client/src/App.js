@@ -4,13 +4,16 @@ import './App.css';
 import {TaskForm} from './components/taskForm.jsx'
 import {TasksList} from './components/task-list'
 import { Menu } from "./components/menu"
+import { SignIn } from "./components/logForm"
+
 
 
 function App() {
   return (
     <div>
-      <Menu></Menu>
-      <TasksList></TasksList>
+      <SignIn />
+      {/* <Menu></Menu>
+      <TasksList></TasksList> */}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export default  class AuthServices {
+export class AuthServices {
     constructor() {
 
         this.service = axios.create({
@@ -10,10 +10,13 @@ export default  class AuthServices {
     }
 
     signup = (username, email,password) => {
-        return this.services.post("/signup", {username, email, password})
+        console.log("vengo de registrarme", username, email,password)
+        console.log("service", this.service)
+
+        return this.service.post("/signup", {username, email, password})
             .then(response => {
                 console.log(response.data)
-                response.data
+                return response.data
             })
             .catch(err => console.log(err))
     }
@@ -22,7 +25,18 @@ export default  class AuthServices {
         return this.services.post("/login", {username, password})
             .then(response => {
                 console.log(response.data)
-                response.data
+                return response.data
             })
     }
+
+    logout = () => {
+        return this.services.post("/logout")
+            .then(response => response.data)
+    }
+
+    loggedin = () => {
+            return this.service.get('/loggedin')
+            .then(response => response.data)
+    }
+    
 }

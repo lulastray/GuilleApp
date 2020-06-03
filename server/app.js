@@ -22,16 +22,16 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 const app = express();
 
 //middleware cors
-// const whitelist= ['http://localhost:5000']
-// const corsOptions = {
-//   origin: (origin, cb) => {
-//     const originIsWhitelisted = whitelist.includes(origin);
-//     cb(null, originIsWhitelisted)
-//   },
-//   credentials: true
-// }
+const whitelist= ['http://localhost:5000']
+const corsOptions = {
+  origin: (origin, cb) => {
+    const originIsWhitelisted = whitelist.includes(origin);
+    cb(null, originIsWhitelisted)
+  },
+  credentials: true
+}
 
-// app.use(cors(corsOptions))
+app.use(cors(corsOptions))
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
