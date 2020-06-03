@@ -11,26 +11,29 @@ const bcryptSalt = 10;
 
 
 authRoutes.post("/signup", (req, res, next) => {
+
+  console.log(req.body)
+
   const username = req.body.username;
   const email = req.body.email;
   const password = req.body.password;
   if (!username || !email || !password) {
-    res.status(400).json({ message: "Provide username, email and password"})
+    return res.status(400).json({ message: "Provide username, email and password"})
   }
   if (password.length < 7){
-    res.status(400).json({ message: "Please make your password at least 8 characters long for security purposes."})
+    return res.status(400).json({ message: "Please make your password at least 8 characters long for security purposes."})
     
   }
   
   User.findOne({$or: [{username}, {email}]}, (err, foundUser, foundEmail) => {
     if (err){
-      res.status(500).json({ message: "Username check went bad."})
+      return res.status(500).json({ message: "Username check went bad."})
     }
     if (foundUser) {
-      res.status(400).json({ message: "Username is already taken, choose another one."})
+      return res.status(400).json({ message: "Username is already taken, choose another one."})
     }
     if (foundEmail) {
-      res.status(400).json({ message: "This email already exists"})
+      return res.status(400).json({ message: "This email already exists"})
     }
     
   
@@ -39,13 +42,13 @@ authRoutes.post("/signup", (req, res, next) => {
 
     const newUser = new User({
       username,
+      email,
       password: hashPass
     });
 
     newUser.save(err => {
       if (err) {
-          res.status(400).json({ message: 'Saving user to database went wrong.' });
-          return;
+          return res.status(400).json({ message: 'Saving user to database went wrong.' });
       }
 
       // Automatically log in user after sign up
@@ -53,13 +56,12 @@ authRoutes.post("/signup", (req, res, next) => {
       req.login(newUser, (err) => {
 
           if (err) {
-              res.status(500).json({ message: 'Login after signup went bad.' });
-              return;
+              return res.status(500).json({ message: 'Login after signup went bad.' });
           }
 
           // Send the user's information to the frontend
           // We can use also: res.status(200).json(req.user);
-          res.status(200).json(newUser);
+          return res.status(200).json(newUser);
       });
     });
   });

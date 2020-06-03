@@ -4,7 +4,7 @@ import './App.css';
 import {TaskForm} from './components/taskForm.jsx'
 import {TasksList} from './components/task-list'
 import { Menu } from "./components/menu"
-import { SignIn } from "./components/logForm"
+import SignIn from "./components/logForm"
 
 
 

@@ -2,23 +2,19 @@ import axios from 'axios'
 
 export class AuthServices {
     constructor() {
-
-        this.service = axios.create({
-            baseURL: `${process.env.REACT_APP_URL}auth`,
-            withCredentials: true
-        })
+        this.baseUrl = `${process.env.REACT_APP_URL}auth`
     }
 
-    signup = (username, email,password) => {
-        console.log("vengo de registrarme", username, email,password)
-        console.log("service", this.service)
+    signup = async user => {
+        console.log("vengo de registrarme", user)
 
-        return this.service.post("/signup", {username, email, password})
-            .then(response => {
-                console.log(response.data)
-                return response.data
-            })
-            .catch(err => console.log(err))
+        return await fetch(`${this.baseUrl}/signup`, {
+            method: "POST", 
+            body: JSON.stringify(user), 
+            headers: { 'Content-Type': 'application/json'},
+            credentials: "include"
+        })
+        
     }
 
     login = (username, password) => {
