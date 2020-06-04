@@ -5,7 +5,7 @@ export class AuthServices {
         this.baseUrl = `${process.env.REACT_APP_URL}auth`
     }
 
-    signup = async user => {
+    signUp = async user => {
         console.log("vengo de registrarme", user)
 
         return await fetch(`${this.baseUrl}/signup`, {
@@ -17,20 +17,21 @@ export class AuthServices {
         
     }
 
-    login = (username, password) => {
-        return this.services.post("/login", {username, password})
-            .then(response => {
-                console.log(response.data)
-                return response.data
-            })
+    logIn = async user => {
+        return fetch(`${this.baseUrl}/login`, {
+            method: "POST",
+            body: JSON.stringify(user),
+            headers: { 'Content-Type': 'application/json'},
+            credentials: "include"
+        })
     }
 
-    logout = () => {
+    logOut = () => {
         return this.services.post("/logout")
             .then(response => response.data)
     }
 
-    loggedin = () => {
+    loggedIn = () => {
             return this.service.get('/loggedin')
             .then(response => response.data)
     }

@@ -36,3 +36,15 @@ TASK LIST:
     ☐ 
 
     
+
+USUARIO:
+    SIGNUP:
+        ☐ que se limpien los campos del formulario
+        ☐ ling a signin
+        ☐ redirección
+        ☐ confirmación email
+
+    SIGNIN:
+        ☐ Formulario con email y contraseña
+        ☐ funcionalidad 
+        ☐ redirección
