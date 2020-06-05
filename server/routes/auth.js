@@ -88,7 +88,6 @@ authRoutes.post('/login', (req, res, next) => {
               res.status(500).json({ message: 'Session save went bad.' });
               return;
           }
-
           // We are now logged in (that's why we can also send req.user)
           res.status(200).json(theUser);
       });
@@ -104,6 +103,8 @@ authRoutes.get("/logout", (req, res) => {
 
 authRoutes.get('/loggedin', (req, res, next) => {
   if (req.isAuthenticated()) {
+    console.log("user logged")
+
       res.status(200).json(req.user);
       return;
   }

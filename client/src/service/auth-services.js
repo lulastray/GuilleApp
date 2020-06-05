@@ -32,8 +32,12 @@ export class AuthServices {
     }
 
     loggedIn = () => {
-            return this.service.get('/loggedin')
-            .then(response => response.data)
+            return fetch(`${this.baseUrl}/loggedin`,{
+            method: "GET",
+            body: JSON.stringify(user),
+            headers: { 'Content-Type': 'application/json'},
+            credentials: "include"
+        })
+            
     }
-    
 }
