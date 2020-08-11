@@ -1,6 +1,5 @@
-import axios from 'axios'
 
-export class AuthServices {
+export default class AuthServices {
     constructor() {
         this.baseUrl = `${process.env.REACT_APP_URL}auth`
     }
@@ -18,7 +17,8 @@ export class AuthServices {
     }
 
     logIn = async user => {
-        return fetch(`${this.baseUrl}/login`, {
+        console.log("vengo a loguearme", user)
+        return await fetch(`${this.baseUrl}/login`, {
             method: "POST",
             body: JSON.stringify(user),
             headers: { 'Content-Type': 'application/json'},
@@ -31,13 +31,8 @@ export class AuthServices {
             .then(response => response.data)
     }
 
-    loggedIn = () => {
-            return fetch(`${this.baseUrl}/loggedin`,{
-            method: "GET",
-            body: JSON.stringify(user),
-            headers: { 'Content-Type': 'application/json'},
-            credentials: "include"
-        })
-            
+    loggedIn = async () => {
+        console.log("loggedin en el service")
+        return await fetch(`${this.baseUrl}/loggedin`, { credentials: "include"})
     }
 }

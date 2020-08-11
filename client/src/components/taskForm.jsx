@@ -4,24 +4,26 @@ import { Modal, Form, Button } from 'react-bootstrap'
 
 export class TaskForm extends Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             task: {
+                creatorID: "",
                 name: "",
                 description: "",
                 periodicity: "",
                 time: "",
                 value: ""
             },
-            show: false
+            show: false,
+            redirect: false
         }
-        // this.handleShow = this.handleShow.bind(this) //por que el bind?
-        // this.handleClose = this.handleClose.bind(this)
+       
         this.services = new TaskServices()
     }
 
     handleShow = () => {
+        console.log("estoy en el form userlogged", this.props.userLogged._id)
         console.log("abrir la modal")
         this.setState({ show : true })
     }
@@ -42,10 +44,12 @@ export class TaskForm extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        this.services.createTask(this.state.task)
+        const newTask = { ...this.state.task, creatorID: this.props.userLogged._id}
+        console.log("new task con id del user Logged en el handle submit",newTask)
+        this.services.createTask(newTask)
             .then( res => {
                 console.log(res) 
-                window.location.href = '/tasks' // no se porque estoy poniendo esto
+                window.location.href = '/tasks' 
             })
     }
 

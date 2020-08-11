@@ -6,13 +6,14 @@ const User = require("../models/User");
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
+const Points = require("../models/Points")
 
 
 
 
 authRoutes.post("/signup", (req, res, next) => {
 
-  console.log(req.body)
+  
 
   const username = req.body.username;
   const email = req.body.email;
@@ -61,6 +62,17 @@ authRoutes.post("/signup", (req, res, next) => {
 
           // Send the user's information to the frontend
           // We can use also: res.status(200).json(req.user);
+          console.log(newUser)
+
+          const newPoints = new Points ({
+            points: 0,
+            userId: newUser._id
+          })
+
+          const pruebaPoints = newPoints.save()
+          console.log(pruebaPoints)
+
+          
           return res.status(200).json(newUser);
       });
     });
@@ -69,7 +81,10 @@ authRoutes.post("/signup", (req, res, next) => {
 
 
 authRoutes.post('/login', (req, res, next) => {
+ 
   passport.authenticate('local', (err, theUser, failureDetails) => {
+    console.log("passport",theUser)
+    console.log("login req.user", req.user)
       if (err) {
           res.status(500).json({ message: 'Something went wrong authenticating user' });
           return;
@@ -89,21 +104,25 @@ authRoutes.post('/login', (req, res, next) => {
               return;
           }
           // We are now logged in (that's why we can also send req.user)
-          res.status(200).json(theUser);
+          console.log("req.user en login", req.user)
+          res.status(200).json(req.user);
       });
   })(req, res, next);
 });
 
 
-authRoutes.get("/logout", (req, res) => {
+authRoutes.post("/logout", (req, res) => {
   req.logout();
-  res.redirect("/");
+  console.log("usuario logeado? despues de Logout", req.user)
+  // res.redirect("/login");
+  res.status(200).json({ message: 'Log out success!' });
+
 });
 
 
 authRoutes.get('/loggedin', (req, res, next) => {
   if (req.isAuthenticated()) {
-    console.log("user logged")
+    console.log("userLogged en loggedin req.user", req.user)
 
       res.status(200).json(req.user);
       return;

@@ -1,24 +1,33 @@
-import axios from 'axios'
+
 
 export default class TaskService {
+    constructor() {
+        this.baseUrl = `${process.env.REACT_APP_URL}api`
+    }
 
-    constructor(){ // no me acuerdo la diferencia entre esto y 
-        this.service = axios.create ({
-            baseURL: 'http://localhost:3000/api/'
+    createTask = async task => {
+        console.log("new task en el service", task)
+        return await fetch(`${this.baseUrl}/new_task`, {
+            method: "POST",
+            body: JSON.stringify(task),
+            headers: { 'Content-Type': 'application/json'},
+            credentials: "include"
         })
     }
 
-    createTask = task => {
-        console.log("new task en el service", task)
-        return this.service.post('new_task', task)
-            .then(createdTask => createdTask) 
-            .catch(err => console.log(err))
+    getAllTasks = async () => {
+        return await fetch(`${this.baseUrl}/all_tasks`, {
+            method: "GET",
+            credentials:"include"
+        })
     }
 
-    getAllTasks = () => {
-       
-        return this.service.get("all_tasks")
-            .then(tasks => tasks.data)
-            .catch(err => console.log(err))
+    changeTaskProgress = async (id, stateProgress) => {
+        return await fetch(`${this.baseUrl}/change_progress`, {
+            method:"POST",
+            body: JSON.stringify({id, stateProgress}),
+            headers: { 'Content-Type': 'application/json'},
+            credentials: "include"
+        })
     }
 }

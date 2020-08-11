@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import {AuthServices} from "../../service/auth-services"
+import AuthServices from "../../service/auth-services"
 import {  Form, Button } from 'react-bootstrap'
 import {Link} from "react-router-dom"
 
@@ -27,6 +27,7 @@ const SignUp = () => {
                 const userCreated = await response.json()
                 //metemos el mensaje para el usuario de usuario creado correctamente
                 console.log("user created", userCreated)
+
                 return
             case 400:
                  const json = await response.json()
@@ -75,7 +76,7 @@ const SignUp = () => {
                          onClick={handleSubmit}>
                    Submit
                  </Button>
-                 <Form.Text>If you´re alreadey a user, please <Link to="/signin">Log In</Link></Form.Text>
+                 <Form.Text>If you´re alreadey a user, please <Link to="/">Log In</Link></Form.Text>
 
                 </div>
              </Form>

@@ -1,4 +1,96 @@
-.header-task {
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+html,body{
+  margin:0px;
+  height:100%;
+  }
+/* * HEADINGS
+ *
+ * Define some minimal heading styles
+ *
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+  /* font-family: Core--Bold; } */
+}
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  color: #49ba94; }
+
+h2 {
+  font-size: 1.3125rem;
+  margin-bottom: 16px; }
+
+h3 {
+  font-size: 1.125rem;
+  margin-bottom: 16px; }
+
+h4 {
+  font-size: 1rem;
+  margin-bottom: 0; }
+
+h5 {
+  font-size: 0.875rem;
+  margin-bottom: 4px; }
+
+h6 {
+  font-size: 0.75rem;
+  margin-bottom: 0; }
+
+body{
+  font-family: Montserrat;
+}
+/* TASKS */
+
+ .header-task {
   background-color:#BDE0BE
 }
 
@@ -13,4 +105,418 @@
 
 .background_titles{
   background-color: #FFEB99
+} 
+
+/* MARGINS */
+.mg-xs{
+  margin: .3em;
 }
+
+.mg-small{
+  margin: .5em;
+}
+
+.mg-medium{
+  margin: .8em;
+}
+
+.mg-large {
+  margin: 1.2em;
+
+}
+.mg-remove{
+  margin:0
+}
+
+.mg-left-xs{
+  margin-left: .3em
+}
+
+.mg-left-small{
+  margin-left: .5em;
+}
+
+.mg-left-medium{
+  margin-left: .8em
+}
+
+.mg-left-large{
+  margin-left: 1.2em
+}
+
+.mg-right-xs{
+  margin-right: .3em
+}
+
+.mg-right-small{
+  margin-right: .5em
+}
+
+.mg-right-medium{
+  margin-right: .8em
+}
+
+.mg-right-large{
+  margin-right: 1.2em
+}
+
+.mg-top-xs{
+  margin-top: .3em
+}
+
+.mg-top-small{
+  margin-top: .5em
+}
+
+.mg-top-medium{
+  margin-top: .8em
+}
+
+.mg-top-large{
+  margin-top: 1.2em
+}
+
+.mg-bottom-xs{
+  margin-bottom: .3em
+}
+
+.mg-bottom-small{
+  margin-bottom: .5em
+}
+
+.mg-bottom-medium{
+  margin-bottom: .8em
+}
+
+.mg-bottom-large{
+  margin-bottom: 1.2em
+}
+
+.mg-auto{
+  margin:0 auto
+}
+
+/* PADDINGS */
+
+.pd-xs{
+  padding: .3em;
+}
+
+.pd-small{
+  padding: .5em;
+}
+
+.pd-medium{
+  padding: .8em;
+}
+
+.pd-large {
+  padding: 1.2em;
+
+}
+.pd-remove{
+  padding:0
+}
+
+.pd-left-xs{
+  padding-left: .3em
+}
+
+.pd-left-small{
+  padding-left: .5em;
+}
+
+.pd-left-medium{
+  padding-left: .8em
+}
+
+.pd-left-large{
+  padding-left: 1.2em
+}
+
+.pd-right-xs{
+  padding-right: .3em
+}
+
+.pd-right-small{
+  padding-right: .5em
+}
+
+.pd-right-medium{
+  padding-right: .8em
+}
+
+.pd-right-large{
+  padding-right: 1.2em
+}
+
+.pd-top-xs{
+  padding-top: .3em
+}
+
+.pd-top-small{
+  padding-top: .5em
+}
+
+.pd-top-medium{
+  padding-top: .8em
+}
+
+.pd-top-large{
+  padding-top: 1.2em
+}
+
+.pd-bottom-xs{
+  padding-bottom: .3em
+}
+
+.pd-bottom-small{
+  padding-bottom: .5em
+}
+
+.pd-bottom-medium{
+  padding-bottom: .8em
+}
+
+.pd-bottom-large{
+  padding-bottom: 1.2em
+}
+
+/* VERTICAL ALIGN CENTER */
+.v-align{
+  display: flex;
+  flex-direction: column;
+  justify-content: center
+}
+.flex{
+  display: flex
+}
+.flex-column{
+  flex-direction: column
+}
+
+/* WIDTHS */
+.width-1-1{
+  width: 100%;
+}
+
+.width-1-2{
+  width: 50%;
+}
+
+.width-1-3{
+  width: 33%;
+}
+
+.width-1-4 {
+  width: 25%;
+}
+
+.width-1-5{
+  width: 20%;
+}
+
+.width-2-3 {
+  width: 66%;
+}
+
+.width-3-4{
+  width: 75%;
+}
+
+.width-2-5 {
+  width: 40%;
+}
+
+.width-3-5{
+  width: 60%;
+}
+
+.width-4-5 {
+  width: 80%;
+}
+
+/* BORDERS */
+.br-radius{
+  border-radius: 12px
+}
+
+
+
+/* FONT SIZE */
+.txt-xs{
+  font-size: .3em;
+}
+
+.txt-small{
+  font-size: .6em;
+}
+
+.txt-medium{
+  font-size: .9em;
+}
+
+.txt-large{
+  font-size: 1.4em;
+}
+
+.txt-xlarge{
+  font-size: 1.8em;
+}
+
+/* FONT WEIGHT */
+.txt-thin{
+  font-weight: 100;
+}
+
+.txt-light{
+  font-weight: 300;
+}
+
+.txt-regular{
+  font-weight: 400;
+}
+
+.txt-medium{
+  font-weight: 500;
+}
+
+.txt-bold{
+  font-weight: 700;
+}
+
+.txt-black{
+  font-weight: 900;
+}
+
+/* TEXT TRANSFORM */
+.txt-uppercase{
+  text-transform: uppercase;
+}
+
+.txt-lowercase{
+  text-transform: lowercase;
+}
+
+.txt-capitalize{
+  text-transform: capitalize;
+}
+
+/* TEXT ALIGN */
+.txt-left {
+  text-align: left;
+}
+
+.txt-right {
+  text-align: right;
+}
+
+.txt-center {
+  text-align: center;
+}
+
+.txt-justify {
+  text-align: justify;
+}
+
+/* TEXT VERTICAL ALIGN */
+
+
+ /* TEXT COLOR */
+.color-danger{
+  color: rgb(199, 100, 100)
+}
+
+.color-success{
+  color: rgb(112, 190, 134)
+}
+
+.color-secondary {
+  color: #393e41
+}
+
+.color-primary {
+  color: #f6f7eb
+}
+
+.color-comp{
+  color: #e94f37
+}
+
+.color-yellow{
+  color: #ffe66d
+}
+
+.color-sea {
+  color: #7de1d0
+}
+
+ /* BACKGROUND COLOR */
+.bk-danger{
+  background-color: #E17D7D;
+}
+
+.bk-success{
+  background-color: #9EDDB0;
+}
+
+.bk-primary{
+  background-color: #f6f7eb;
+}
+
+.bk-comp{
+  background-color: #e94f37;
+}
+
+.bk-secondary{
+  background-color: #393e41;
+}
+
+.bk-yellow{
+  background-color: #ffe66d;
+}
+
+.bk-sea {
+  background-color: #7de1d0
+}
+
+ /* FORMS */
+
+
+/* 
+label{
+  display: block;
+  margin-bottom: 10px;
+}
+input{
+  width:100%;
+  border-radius: 7px;
+  padding: 5px 3px;
+  background-color: transparent;
+  border: 1px solid #909090;
+  margin-bottom: 15px
+} */
+
+/* DISPLAY */
+.inLine-block{
+  display: inline-block
+}
+
+.d-inLine{
+  display: inline
+}
+
+
+
+/* CARD */
+.card{
+  border-radius: 12px;
+  padding: 1em;
+  width: 75%;
+  margin: 0 auto;
+  }
+
+
+  .content{
+    height: 100vh
+  }

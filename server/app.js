@@ -21,6 +21,15 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
+
+mongoose
+  .connect('mongodb://localhost/nomorepunishment', {useNewUrlParser: true})
+  .then(x => {
+    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
+  })
+  .catch(err => {
+    console.error('Error connecting to mongo', err)
+  });
 //middleware cors
 const whitelist= ['http://localhost:5000']
 const corsOptions = {
@@ -78,9 +87,11 @@ app.use(session({
 app.use(flash());
 require('./passport')(app);
     
+const api = require('./routes/api.routes');
+app.use('/api', api);
 
-const index = require('./routes/index');
-app.use('/', index);
+// const index = require('./routes/index');
+// app.use('/', index);
 
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
