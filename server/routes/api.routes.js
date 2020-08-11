@@ -74,6 +74,19 @@ router.post('/new_reward', async (req, res) => {
     
 })
 
+router.get('/all_rewards', async (req, res) => {
+    try {
+        const allRewards = await Rewards.find({creatorID: req.user._id})
+        console.log(allRewards)
+        return res.status(200).json(allRewards)
+
+    }catch(error){
+        console.log(error)
+        return res.status(500).json({error: "can´t find any rewards"})
+    }
+
+})
+
 
 module.exports = router
 
