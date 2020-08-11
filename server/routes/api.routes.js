@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Task = require('../models/Tasks')
 const Points = require('../models/Points')
+const Rewards = require('../models/Rewards')
 
 
 router.post('/new_task', (req, res) => {
@@ -33,16 +34,44 @@ router.get("/all_tasks", (req, res) => {
 router.post("/change_progress", async (req, res) => {
     const { id, stateProgress} = req.body
     const response = await Task.update({ _id: id}, { stateProgress: stateProgress})
-    console.log("entro en change_progress",response)
-    if (stateProgress === "completed") {
-        console.log("entro en stateProgress es completed para sumar los puntos")
-        const responsePoints = await Points.findById({userId: req.user._id})
-        console.log("valor task", Task.value)
-        console.log("responsePoints", responsePoints)
-        
+    if (response.ok !== 1 || response.n !== 1){
+        return  res.status(500).json({error: "can´t change the task progress, sorry"})
     }
-    // { n: 1, nModified: 1, ok: 1 }
-    return response.n === 1 && response.ok === 1 ? res.status(200).json() : res.status(500).json({error: "can´t change the task progress, sorry"})
+
+    const responseTask = await Task.findById(id)
+    
+
+    const responsePoints = await Points.find({userId: req.user._id})
+
+    if (stateProgress === "completed") {
+
+        const sumPoints = await Points.update({points: responsePoints[0].points += responseTask.value})
+        
+        return sumPoints.n === 1 && sumPoints.ok === 1 ? res.status(200).json() : res.status(500).json({error: "can´t sume points, sorry"})
+} else {
+        
+        const minusPoints = await Points.update({points: responsePoints[0].points -= responseTask.value})
+        return minusPoints.n === 1 && minusPoints.ok === 1 ? res.status(200).json() : res.status(500).json({error: "can´t substract points, sorry"})
+
+    }
+})
+
+
+//RUTAS REWARDS
+router.post('/new_reward', async (req, res) => {
+    
+    const newReward = { creatorId, name, value} = req.body
+    console.log(newReward)
+// validar que no venga vacios los campos obligatorios
+    try {
+        const createdReward = await Rewards.create(newReward)
+        console.log(createdReward)
+        return res.status(200).json(newReward)
+    }catch(error) {
+        console.log(error)
+        return res.status(500).json({error: "can´t creat a new reward"})
+    }
+    
 })
 
 

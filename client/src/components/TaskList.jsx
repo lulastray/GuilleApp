@@ -24,7 +24,6 @@ export class TasksList extends Component {
     }
 
     async fetchTasks () {
-        console.log("entro en fetchTask")
         const response = await this.services.getAllTasks()
         if(response.status === 200) {
             const allTasks = await response.json()
@@ -38,7 +37,6 @@ export class TasksList extends Component {
     
         const response = await this.services.changeTaskProgress(e.target.id, stateProgress)
         if (response.status === 200){
-            console.log( "se ha cambiado el estado", stateProgress)
             this.fetchTasks()
         }
     }
