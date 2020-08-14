@@ -5,24 +5,26 @@ import { Modal, Form, Button } from 'react-bootstrap'
 
 
 
-const RewardForm = props => {
+const RewardForm = ({userLogged, setShowModal, showModal}) => {
 
     const [reward, setReward] = useState({})
     const services = new TaskServices()
 
-    const [showModal, setShowModal] = useState(false)
 
 
     const handleShow = (e) => {
+        console.log("estoy en el form userlogged", userLogged._id)
+
         setShowModal(true)
     }
 
     const handleClose = () => {
+        console.log("entero en handle show")
         setShowModal(false)
     }
 
     const handleChange = e => {
-        const [name, value] = e.target
+        const {name, value} = e.target
         const newReward = {
             ...reward,
             [name]: value
@@ -33,8 +35,8 @@ const RewardForm = props => {
 
     const handleSubmit = async e => {
         e.preventDefault()
-
-        const response = await services.createReward(reward)
+        const newReward= { ...reward, creatorID: userLogged._id}
+        const response = await services.createReward(newReward)
 
         switch(response.status){
             case 200:
@@ -42,19 +44,20 @@ const RewardForm = props => {
                 //metemos el mensaje para el usuario de usuario creado correctamente
                 console.log("reward created", rewardCreated)
 
-                return
+                break
             case 400:
                  const json = await response.json()
                  console.log(json.message)
-                 return
+                 break
              case 403:
                  console.log("Ha petado")
-                 return
+                 break
              default:
                  console.log("Ha petado sin control")
-                 return
+                 break
         } 
         setReward({})
+        handleClose()
     }
 
     return (

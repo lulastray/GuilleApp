@@ -8,10 +8,13 @@ import { Trash } from 'react-bootstrap-icons'
 
 
 
-const RewardList = props => {
+const RewardList =({userLogged})=> {
 
     const [rewards, setRewards] = useState([])
     const [isExchange, setIsChange] = useState(false)
+
+    const [showModal, setShowModal] = useState(false)
+
 
     const services = new TaskServices()
 
@@ -29,7 +32,7 @@ const RewardList = props => {
     useEffect(() => {
         console.log("entro en useEffect")
         fetchRewards();
-      }, []);
+      }, [showModal]);
 
 
     return(
@@ -76,11 +79,11 @@ const RewardList = props => {
                 <Container fluid>
                     <Row>
                         <Col>
-                            <RewardForm userLogged={props.userLogged}></RewardForm>
+                            <RewardForm userLogged={userLogged} setShowModal={setShowModal} showModal={showModal}></RewardForm>
                         </Col>
-                        <Col>
+                        {/* <Col>
                             <Button className="btn btn_red btn_font">Remove task</Button>
-                        </Col>
+                        </Col> */}
                     </Row> 
                 </Container>
             </div>
