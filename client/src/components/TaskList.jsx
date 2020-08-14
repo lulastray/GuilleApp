@@ -54,10 +54,10 @@ export class TasksList extends Component {
         return(
             <section>
                 {/* imagen cabecera task */}
-                <header className="header-task">
+                <header className="bk-green">
 
                     <figure className="text-center mb-0">
-                        <img className="img-task" src={ImageTask}/>
+                        <img className="width-4-5" src={ImageTask}/>
                         <h1 className="mt-0 mb-0">My Tasks</h1>
                     </figure>
 

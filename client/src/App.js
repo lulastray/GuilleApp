@@ -9,6 +9,7 @@ import SignUp from "./components/logForms/SignUpForm"
 import LogIn from "./components/logForms/Login"
 import AuthServices from "./service/auth-services"
 import Inicio from "./components/Inicio"
+import RewardList from './components/RewardList'
 
 
 const App = () => {
@@ -38,10 +39,10 @@ const App = () => {
     <main>
       {/* <Menu /> */}
       <Switch>
-         <Route path="/" exact render={props => <LogIn {...props} setUserLogged={setUserLogged} />} />
-         <Route path="/signup" exact component={SignUp} />
-         <Route path="/tasks" exact render={props => <TasksList {...props} userLogged={userLogged} />} />
-        
+        <Route path="/" exact render={props => <LogIn {...props} setUserLogged={setUserLogged} />} />
+        <Route path="/signup" exact component={SignUp} />
+        <Route path="/tasks" exact render={props => <TasksList {...props} userLogged={userLogged} />} />
+        <Route path="/rewards" exact render={props => <RewardList {...props} userLogged={userLogged} />} />
 
       </Switch>
     </main>
