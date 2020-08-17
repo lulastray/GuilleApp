@@ -49,6 +49,7 @@ export class TasksList extends Component {
             console.log("he cambiado el estado a borrado")
         }
     }
+    
 
     render(){
         return(

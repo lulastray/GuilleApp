@@ -3,6 +3,7 @@ const router = express.Router()
 const Task = require('../models/Tasks')
 const Points = require('../models/Points')
 const Rewards = require('../models/Rewards')
+const { response } = require('express')
 
 
 router.post('/new_task', (req, res) => {
@@ -98,6 +99,34 @@ router.post('/remove_reward', async (req, res) => {
     
 
 })
+
+router.post('/exchange_reward', async (req, res) => {
+
+    const { id, exchanged, value } = req.body
+    const responsePoints = await Points.find({userId: req.user._id})
+
+    const substractPoints = responsePoints[0].points - value
+    
+    if (substractPoints >= 0) {
+        const exchangePoints = await Points.update({points : substractPoints})
+        if(exchangePoints.ok === 1 || exchangePoints.n === 1){
+            const responseExchangedReward = await Rewards.update({_id: id}, {exchanged: true})
+            if (responseExchangedReward .ok === 1 || responseExchangedReward .n === 1) {
+                res.status(200).json()
+            }else {
+                res.status(500).json({error: "can´t exchange this reward, sorry"})
+            }
+        }else {
+            res.status(500).json({error: "something went wrong with your points, sorry"})
+        }
+            
+    } else {
+        return res.status(403).json({error: "You don´t have enough points to exchange this reward, sorry"})
+
+    }
+    
+
+} )
 
 
 module.exports = router

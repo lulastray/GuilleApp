@@ -39,6 +39,18 @@ const RewardList =({userLogged})=> {
         }
     }
 
+    const handleExchangeReward = async (e) => {
+        const state = e.target.checked ? true : false
+        const value = e.target.value
+        console.log("value reward",value)
+        const response = await services.exchangeReward(e.target.id, state, value)
+        if(response.status === 200){
+            fetchRewards()
+            console.log ("he canjeado la reward, yupiiiiii")
+        }
+
+    }
+
     useEffect(() => {
         console.log("entro en useEffect")
         fetchRewards();
@@ -70,8 +82,9 @@ const RewardList =({userLogged})=> {
                                                                         id={theReward._id}
                                                                         label={theReward.name}
                                                                         key={idx}
-                                                                        
+                                                                        value={theReward.value}
                                                                         className="width-1-3"
+                                                                        onChange={handleExchangeReward}
                     ></Form.Check>
                         <div className="width-1-3">
                             <p>Value:{theReward.value}</p>
