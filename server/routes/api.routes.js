@@ -87,7 +87,17 @@ router.get('/all_rewards', async (req, res) => {
 
 })
 
+router.post('/remove_reward', async (req, res) => {
+    console.log(req.body)
+    const {id, deleted} = req.body
 
+    console.log("id", id)
+    console.log("deleted", deleted)
+    const response = await Rewards.update({_id: id}, {deleted: deleted})
+    response.ok === 1 || response.n === 1 ? res.status(200).json() : res.status(500).json({error: "can´t delete this reward, sorry"})
+    
+
+})
 
 
 module.exports = router

@@ -67,18 +67,25 @@ export class TasksList extends Component {
                     <h3 className="body_titles ml-4">To do:</h3>
                 </div>
 
-                <div className="row ml-4">
-                    <Form>
+                <div className="width-1-1 pd-medium">
+                    <Form className="width-1-1 flex flex-column">
                         
                         {this.state.tasks.filter(task=> task.stateProgress !== "deleted").map((theTask, idx) => {         
                             console.log(theTask.stateProgress)
-                            return (<div><Form.Check checked={theTask.stateProgress === "completed"}
+                            return (<div className="width-1-1 flex flex-direction-row justify-between"><Form.Check checked={theTask.stateProgress === "completed"}
                                                                             id={theTask._id}
                                                                             label={theTask.name}
                                                                             key={idx}
                                                                             onChange={this.handleStateProgress}
-                                                                            className="d-inLine"
-                        /><span className="txt-right"><Trash id={theTask._id} onClick={this.handleDelete} color="royalblue" size={20} /></span></div>)
+                                                                            className="width-1-3"
+                        />
+                            <div className="width-1-3">
+                                <p>Value:<span className="color-success">{theTask.value}</span></p>
+                            </div>
+                            <div className="width-1-5 txt-right">
+                                <p><Trash id={theTask._id} onClick={this.handleDelete}color="royalblue" size={20} /></p>
+                            </div>
+                        </div>)
                         })
                         }
 

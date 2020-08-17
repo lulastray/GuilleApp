@@ -49,5 +49,16 @@ export default class TaskService {
             credentials: "include"
         })
     }
+
+    removeReward = async (id, deleted) => {
+        console.log("id reward", id)
+        console.log("status rewards", deleted)
+        return await fetch(`${this.baseUrl}/remove_reward`, {
+            method: "POST",
+            body: JSON.stringify({id, deleted}),
+            headers: { 'Content-Type': 'application/json'},
+            credentials: "include"
+        })
+    }
 }
 

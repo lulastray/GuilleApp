@@ -29,6 +29,16 @@ const RewardList =({userLogged})=> {
         }
     }
 
+    const handleDelete = async (e) => {
+        console.log("e.target", e.target)
+        console.log("voy a borrar", e.target.id)
+        const response = await services.removeReward(e.target.id, true)
+        if(response.status === 200){
+            fetchRewards()
+            console.log("he cambiado el estado a borrado")
+        }
+    }
+
     useEffect(() => {
         console.log("entro en useEffect")
         fetchRewards();
@@ -38,7 +48,7 @@ const RewardList =({userLogged})=> {
     return(
         <section>
             {/* imagen cabecera task */}
-            <header className="bk-blue pd-bottom-large">
+            <header className="bk-blue pd-bottom-large width-1-1">
 
                 <figure className="text-center mb-0">
                     <img className="width-1-4" src={ImageReward}/>
@@ -51,20 +61,25 @@ const RewardList =({userLogged})=> {
                 <h3 className="body_titles ml-4 pd-small">To exchange:</h3>
             </div>
 
-            <div className="row ml-4">
-                <Form>
+            <div className="width-1-1 pd-medium">
+                <Form className="width-1-1 flex flex-column">
                     
-                    {rewards && rewards.map((theReward, idx) => {         
+                    {rewards && rewards.filter(rewards => !rewards.deleted).map((theReward, idx) => {         
                         console.log(theReward)
-                        return (<div><Form.Check disabled={theReward.exchanged}
+                        return (<div className="width-1-1 flex flex-direction-row justify-between"><Form.Check disabled={theReward.exchanged}
                                                                         id={theReward._id}
                                                                         label={theReward.name}
                                                                         key={idx}
                                                                         
-                                                                        className="d-inLine"
-                    />
-                    <span className="txt-right">{theReward.value}</span>
-                    <span className="txt-right"><Trash id={theReward._id} color="royalblue" size={20} /></span></div>)
+                                                                        className="width-1-3"
+                    ></Form.Check>
+                        <div className="width-1-3">
+                            <p>Value:{theReward.value}</p>
+                        </div>
+                        <div className="width-1-5 txt-right">
+                            <p><Trash id={theReward._id} color="royalblue" size={20} onClick={handleDelete} /></p>
+                        </div>
+                    </div>)
                     })
                     }
 

@@ -295,6 +295,21 @@ body{
   flex-direction: column
 }
 
+.flex-direction-row {
+  flex-direction: row;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.justify-between {
+  justify-content: space-between
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
 /* WIDTHS */
 .width-1-1{
   width: 100%;
