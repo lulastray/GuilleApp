@@ -4,7 +4,7 @@ import ImageReward from '../images/helado_ok.png'
 import  RewardForm  from './RewardForm'
 import { Button, Form, Col, Row, Container } from 'react-bootstrap'
 import { Trash } from 'react-bootstrap-icons'
-
+import ModalConfirm from './ModalConfirm'
 
 
 
@@ -13,11 +13,16 @@ const RewardList =({userLogged})=> {
     const [rewards, setRewards] = useState([])
     const [isExchange, setIsChange] = useState(false)
 
-    const [showModal, setShowModal] = useState(false)
+    const [showCreate, setShowCreate] = useState(false)
+
+    const [showConfirm, setShowConfirm] = useState(false)
 
 
     const services = new TaskServices()
 
+    const title = "Exchange Reward"
+    const messageModalConfirm = "Do you want to exchange this Reward"
+    const buttonModalConfirm = "Exchange!"
 
     const fetchRewards = async () => {
         console.log("ento a llamar a todas mis rewards en el front")
@@ -39,12 +44,22 @@ const RewardList =({userLogged})=> {
         }
     }
 
+    const handleShowConfirm = e => {
+        setShowConfirm(true)
+    }
+
+    const handleCloseConfirm = e => {
+        setShowConfirm(false)
+    }
+
+
     const handleExchangeReward = async (e) => {
         const state = e.target.checked ? true : false
         const value = e.target.value
         console.log("value reward",value)
         const response = await services.exchangeReward(e.target.id, state, value)
         if(response.status === 200){
+            
             fetchRewards()
             console.log ("he canjeado la reward, yupiiiiii")
         }
@@ -54,7 +69,7 @@ const RewardList =({userLogged})=> {
     useEffect(() => {
         console.log("entro en useEffect")
         fetchRewards();
-      }, [showModal]);
+      }, [showCreate]);
 
 
     return(
@@ -84,7 +99,7 @@ const RewardList =({userLogged})=> {
                                                                         key={idx}
                                                                         value={theReward.value}
                                                                         className="width-1-3"
-                                                                        onChange={handleExchangeReward}
+                                                                        onChange={handleShowConfirm}
                     ></Form.Check>
                         <div className="width-1-3">
                             <p>Value:{theReward.value}</p>
@@ -107,7 +122,7 @@ const RewardList =({userLogged})=> {
                 <Container fluid>
                     <Row>
                         <Col>
-                            <RewardForm userLogged={userLogged} setShowModal={setShowModal} showModal={showModal}></RewardForm>
+                            <RewardForm userLogged={userLogged} setShowCreate={setShowCreate} showCreate={showCreate}></RewardForm>
                         </Col>
                         {/* <Col>
                             <Button className="btn btn_red btn_font">Remove task</Button>
@@ -116,6 +131,7 @@ const RewardList =({userLogged})=> {
                 </Container>
             </div>
 
+            <ModalConfirm showConfirm={showConfirm} setShowConfirm={setShowConfirm} handleExchangeReward={handleExchangeReward} title={title} messageModalConfirm={messageModalConfirm} buttonModalConfirm={buttonModalConfirm} />
 
 
         </section>

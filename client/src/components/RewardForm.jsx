@@ -5,7 +5,7 @@ import { Modal, Form, Button } from 'react-bootstrap'
 
 
 
-const RewardForm = ({userLogged, setShowModal, showModal}) => {
+const RewardForm = ({userLogged, setShowCreate, showCreate}) => {
 
     const [reward, setReward] = useState({})
     const services = new TaskServices()
@@ -13,14 +13,11 @@ const RewardForm = ({userLogged, setShowModal, showModal}) => {
 
 
     const handleShow = (e) => {
-        console.log("estoy en el form userlogged", userLogged._id)
-
-        setShowModal(true)
+        setShowCreate(true)
     }
 
     const handleClose = () => {
-        console.log("entero en handle show")
-        setShowModal(false)
+        setShowCreate(false)
     }
 
     const handleChange = e => {
@@ -29,7 +26,6 @@ const RewardForm = ({userLogged, setShowModal, showModal}) => {
             ...reward,
             [name]: value
         }
-        console.log("nueva recompensa",newReward)
         setReward(newReward)
     }
 
@@ -64,7 +60,7 @@ const RewardForm = ({userLogged, setShowModal, showModal}) => {
         <section>
             <Button className="btn btn_yellow btn_font" size="lg" onClick={handleShow}>New Reward</Button>
             
-            <Modal show={showModal} onHide={handleClose}>
+            <Modal show={showCreate} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Add a new Reward</Modal.Title>
                 </Modal.Header>
