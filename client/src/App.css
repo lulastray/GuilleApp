@@ -363,8 +363,12 @@ body{
   font-size: .3em;
 }
 
-.txt-small{
-  font-size: .6em;
+.txt-xsmall{
+  font-size: .5em;
+}
+
+.txt-small {
+  font-size: .7em;
 }
 
 .txt-medium{

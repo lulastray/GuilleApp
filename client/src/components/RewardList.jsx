@@ -11,7 +11,7 @@ import ModalConfirm from './ModalConfirm'
 const RewardList =({userLogged})=> {
 
     const [rewards, setRewards] = useState([])
-    const [isExchange, setIsChange] = useState(false)
+    const [currentReward, setCurrentReward] = useState("")
 
     const [showCreate, setShowCreate] = useState(false)
 
@@ -25,17 +25,14 @@ const RewardList =({userLogged})=> {
     const buttonModalConfirm = "Exchange!"
 
     const fetchRewards = async () => {
-        console.log("ento a llamar a todas mis rewards en el front")
         const response = await services.getAllRewards()
         if (response.status === 200) {
         const allRewards = await response.json()
-        console.log(allRewards)
         setRewards(allRewards)
         }
     }
 
     const handleDelete = async (e) => {
-        console.log("e.target", e.target)
         console.log("voy a borrar", e.target.id)
         const response = await services.removeReward(e.target.id, true)
         if(response.status === 200){
@@ -45,21 +42,22 @@ const RewardList =({userLogged})=> {
     }
 
     const handleShowConfirm = e => {
+        setCurrentReward(e.target.id)
         setShowConfirm(true)
     }
 
     const handleCloseConfirm = e => {
+        console.log("entro en handleClose")
         setShowConfirm(false)
     }
 
 
-    const handleExchangeReward = async (e) => {
-        const state = e.target.checked ? true : false
-        const value = e.target.value
-        console.log("value reward",value)
-        const response = await services.exchangeReward(e.target.id, state, value)
+    const handleExchangeReward = async () => {
+       const id = currentReward
+        console.log("estoy en handleExcahange id reward",id)
+        const response = await services.exchangeReward(id)
         if(response.status === 200){
-            
+            handleCloseConfirm()
             fetchRewards()
             console.log ("he canjeado la reward, yupiiiiii")
         }
@@ -92,12 +90,12 @@ const RewardList =({userLogged})=> {
                 <Form className="width-1-1 flex flex-column">
                     
                     {rewards && rewards.filter(rewards => !rewards.deleted).map((theReward, idx) => {         
-                        console.log(theReward)
-                        return (<div className="width-1-1 flex flex-direction-row justify-between"><Form.Check disabled={theReward.exchanged}
+                        
+                        return (<div className="width-1-1 flex flex-direction-row justify-between" key={idx}><Form.Check disabled={theReward.exchanged}
                                                                         id={theReward._id}
                                                                         label={theReward.name}
-                                                                        key={idx}
-                                                                        value={theReward.value}
+                                                                        
+                                                                       
                                                                         className="width-1-3"
                                                                         onChange={handleShowConfirm}
                     ></Form.Check>
@@ -131,7 +129,14 @@ const RewardList =({userLogged})=> {
                 </Container>
             </div>
 
-            <ModalConfirm showConfirm={showConfirm} setShowConfirm={setShowConfirm} handleExchangeReward={handleExchangeReward} title={title} messageModalConfirm={messageModalConfirm} buttonModalConfirm={buttonModalConfirm} />
+            <ModalConfirm showConfirm={showConfirm} 
+                            setShowConfirm={setShowConfirm} 
+                            handleExchangeReward={handleExchangeReward} 
+                            title={title} 
+                            messageModalConfirm={messageModalConfirm} 
+                            buttonModalConfirm={buttonModalConfirm}
+                            
+            />
 
 
         </section>

@@ -61,10 +61,10 @@ export default class TaskService {
         })
     }
 
-    exchangeReward = async (id, exchanged, value) => {
+    exchangeReward = async (id) => {
         return await fetch(`${this.baseUrl}/exchange_reward`, {
             method: "POST",
-            body: JSON.stringify({id, exchanged, value}),
+            body: JSON.stringify({id}),
             headers: { 'Content-Type': 'application/json'},
             credentials: "include"
 

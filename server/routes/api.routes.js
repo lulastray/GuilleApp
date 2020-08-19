@@ -102,10 +102,12 @@ router.post('/remove_reward', async (req, res) => {
 
 router.post('/exchange_reward', async (req, res) => {
 
-    const { id, exchanged, value } = req.body
+    const { id } = req.body
+    const valueReward = await Rewards.findById(id)
+    console.log("value Reward", valueReward.value)
     const responsePoints = await Points.find({userId: req.user._id})
 
-    const substractPoints = responsePoints[0].points - value
+    const substractPoints = responsePoints[0].points - valueReward.value
     
     if (substractPoints >= 0) {
         const exchangePoints = await Points.update({points : substractPoints})

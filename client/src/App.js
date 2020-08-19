@@ -4,7 +4,7 @@ import './App.css';
 import { Switch, Route } from 'react-router-dom'
 import {TaskForm} from './components/taskForm.jsx'
 import {TasksList} from './components/TaskList'
-import { Menu } from "./components/menu"
+import  Menu from "./components/menu"
 import SignUp from "./components/logForms/SignUpForm"
 import LogIn from "./components/logForms/Login"
 import AuthServices from "./service/auth-services"
@@ -37,7 +37,7 @@ const App = () => {
 
   return (
     <main>
-      {/* <Menu /> */}
+      <Menu />
       <Switch>
         <Route path="/" exact render={props => <LogIn {...props} setUserLogged={setUserLogged} />} />
         <Route path="/signup" exact component={SignUp} />

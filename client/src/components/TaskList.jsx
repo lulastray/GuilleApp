@@ -73,10 +73,10 @@ export class TasksList extends Component {
                         
                         {this.state.tasks.filter(task=> task.stateProgress !== "deleted").map((theTask, idx) => {         
                             console.log(theTask.stateProgress)
-                            return (<div className="width-1-1 flex flex-direction-row justify-between"><Form.Check checked={theTask.stateProgress === "completed"}
+                            return (<div className="width-1-1 flex flex-direction-row justify-between" key={idx}><Form.Check checked={theTask.stateProgress === "completed"}
                                                                             id={theTask._id}
                                                                             label={theTask.name}
-                                                                            key={idx}
+                                                                            
                                                                             onChange={this.handleStateProgress}
                                                                             className="width-1-3"
                         />

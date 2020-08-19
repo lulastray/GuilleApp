@@ -12,13 +12,9 @@ const RewardForm = ({userLogged, setShowCreate, showCreate}) => {
 
 
 
-    const handleShow = (e) => {
-        setShowCreate(true)
-    }
-
-    const handleClose = () => {
-        setShowCreate(false)
-    }
+    const handleShow = (e) => setShowCreate(true)
+    const handleClose = () => setShowCreate(false)
+    
 
     const handleChange = e => {
         const {name, value} = e.target
