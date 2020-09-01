@@ -25,7 +25,6 @@ const Button = props => {
                 className += "mc-small "
                 return
         }
-        console.log(className)
         return className
     }
 

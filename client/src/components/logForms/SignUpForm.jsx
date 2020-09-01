@@ -33,11 +33,8 @@ const SignUp = () => {
                  const json = await response.json()
                  console.log(json.message)
                  return
-             case 403:
-                 console.log("Ha petado")
-                 return
              default:
-                 console.log("Ha petado sin control")
+                 console.log("Sorry, something went wrong")
                  return
         } 
         setUser({})

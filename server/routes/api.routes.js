@@ -12,11 +12,9 @@ router.post('/new_task', (req, res) => {
 // validar que no venga vacios los campos obligatorios
     Task.create(newTask)
         .then(createdTask => {
-            console.log("task created", createdTask)
             res.status(200).json(createdTask)
         })
         .catch(error => {
-            console.log("can´t create a new task", error)
             res.status(500).json({error:"can´t create a new task"})
             
         })
@@ -26,7 +24,6 @@ router.post('/new_task', (req, res) => {
 router.get("/all_tasks", (req, res) => {
     Task.find({creatorID: req.user._id})
     .then(allTasks => {
-        // console.log("all tasks", allTasks)
         return res.json(allTasks)
     })
     .catch(err => res.status(500).json({err: "can´t get all tasks"}))
@@ -62,14 +59,11 @@ router.post("/change_progress", async (req, res) => {
 router.post('/new_reward', async (req, res) => {
     
     const newReward = { creatorId, name, value} = req.body
-    console.log(newReward)
 // validar que no venga vacios los campos obligatorios
     try {
         const createdReward = await Rewards.create(newReward)
-        console.log(createdReward)
         return res.status(200).json(newReward)
     }catch(error) {
-        console.log(error)
         return res.status(500).json({error: "can´t creat a new reward"})
     }
     
@@ -78,22 +72,17 @@ router.post('/new_reward', async (req, res) => {
 router.get('/all_rewards', async (req, res) => {
     try {
         const allRewards = await Rewards.find({creatorID: req.user._id})
-        console.log(allRewards)
         return res.status(200).json(allRewards)
 
     }catch(error){
-        console.log(error)
         return res.status(500).json({error: "can´t find any rewards"})
     }
 
 })
 
 router.post('/remove_reward', async (req, res) => {
-    console.log(req.body)
     const {id, deleted} = req.body
 
-    console.log("id", id)
-    console.log("deleted", deleted)
     const response = await Rewards.update({_id: id}, {deleted: deleted})
     response.ok === 1 || response.n === 1 ? res.status(200).json() : res.status(500).json({error: "can´t delete this reward, sorry"})
     
@@ -104,7 +93,6 @@ router.post('/exchange_reward', async (req, res) => {
 
     const { id } = req.body
     const valueReward = await Rewards.findById(id)
-    console.log("value Reward", valueReward.value)
     const responsePoints = await Points.find({userId: req.user._id})
 
     const substractPoints = responsePoints[0].points - valueReward.value

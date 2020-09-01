@@ -23,12 +23,9 @@ export class TaskForm extends Component {
     }
 
     handleShow = () => {
-        console.log("estoy en el form userlogged", this.props.userLogged._id)
-        console.log("abrir la modal")
         this.setState({ show : true })
     }
     handleClose = () => {
-        console.log("cierra la modal")
         this.setState({ show: false })
     }
 
@@ -45,10 +42,8 @@ export class TaskForm extends Component {
     handleSubmit = e => {
         e.preventDefault()
         const newTask = { ...this.state.task, creatorID: this.props.userLogged._id}
-        console.log("new task con id del user Logged en el handle submit",newTask)
         this.services.createTask(newTask)
             .then( res => {
-                console.log(res) 
                 window.location.href = '/tasks' 
             })
     }

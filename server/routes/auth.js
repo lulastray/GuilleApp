@@ -62,7 +62,6 @@ authRoutes.post("/signup", (req, res, next) => {
 
           // Send the user's information to the frontend
           // We can use also: res.status(200).json(req.user);
-          console.log(newUser)
 
           const newPoints = new Points ({
             points: 0,
@@ -70,7 +69,6 @@ authRoutes.post("/signup", (req, res, next) => {
           })
 
           const pruebaPoints = newPoints.save()
-          console.log(pruebaPoints)
 
           
           return res.status(200).json(newUser);
@@ -83,8 +81,6 @@ authRoutes.post("/signup", (req, res, next) => {
 authRoutes.post('/login', (req, res, next) => {
  
   passport.authenticate('local', (err, theUser, failureDetails) => {
-    console.log("passport",theUser)
-    console.log("login req.user", req.user)
       if (err) {
           res.status(500).json({ message: 'Something went wrong authenticating user' });
           return;
@@ -104,7 +100,6 @@ authRoutes.post('/login', (req, res, next) => {
               return;
           }
           // We are now logged in (that's why we can also send req.user)
-          console.log("req.user en login", req.user)
           res.status(200).json(req.user);
       });
   })(req, res, next);
@@ -113,7 +108,6 @@ authRoutes.post('/login', (req, res, next) => {
 
 authRoutes.post("/logout", (req, res) => {
   req.logout();
-  console.log("usuario logeado? despues de Logout", req.user)
   // res.redirect("/login");
   res.status(200).json({ message: 'Log out success!' });
 
@@ -122,7 +116,6 @@ authRoutes.post("/logout", (req, res) => {
 
 authRoutes.get('/loggedin', (req, res, next) => {
   if (req.isAuthenticated()) {
-    console.log("userLogged en loggedin req.user", req.user)
 
       res.status(200).json(req.user);
       return;

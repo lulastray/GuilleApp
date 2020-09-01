@@ -33,7 +33,6 @@ export default class TaskService {
     //REWARDS
 
     createReward = async reward =>{
-        console.log("new reward services", reward)
         return await fetch(`${this.baseUrl}/new_reward`, {
             method: "POST",
             body: JSON.stringify(reward),
@@ -43,7 +42,6 @@ export default class TaskService {
     }
 
     getAllRewards = async () => {
-        console.log("entro en my services a hacer la llamada al back")
         return await fetch(`${this.baseUrl}/all_rewards`, {
             method: "GET",
             credentials: "include"
@@ -51,8 +49,6 @@ export default class TaskService {
     }
 
     removeReward = async (id, deleted) => {
-        console.log("id reward", id)
-        console.log("status rewards", deleted)
         return await fetch(`${this.baseUrl}/remove_reward`, {
             method: "POST",
             body: JSON.stringify({id, deleted}),

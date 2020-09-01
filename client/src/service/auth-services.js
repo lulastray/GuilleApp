@@ -5,7 +5,6 @@ export default class AuthServices {
     }
 
     signUp = async user => {
-        console.log("vengo de registrarme", user)
 
         return await fetch(`${this.baseUrl}/signup`, {
             method: "POST", 
@@ -17,7 +16,6 @@ export default class AuthServices {
     }
 
     logIn = async user => {
-        console.log("vengo a loguearme", user)
         return await fetch(`${this.baseUrl}/login`, {
             method: "POST",
             body: JSON.stringify(user),
@@ -32,7 +30,6 @@ export default class AuthServices {
     }
 
     loggedIn = async () => {
-        console.log("loggedin en el service")
         return await fetch(`${this.baseUrl}/loggedin`, { credentials: "include"})
     }
 }

@@ -33,11 +33,9 @@ const RewardList =({userLogged})=> {
     }
 
     const handleDelete = async (e) => {
-        console.log("voy a borrar", e.target.id)
         const response = await services.removeReward(e.target.id, true)
         if(response.status === 200){
             fetchRewards()
-            console.log("he cambiado el estado a borrado")
         }
     }
 
@@ -47,25 +45,21 @@ const RewardList =({userLogged})=> {
     }
 
     const handleCloseConfirm = e => {
-        console.log("entro en handleClose")
         setShowConfirm(false)
     }
 
 
     const handleExchangeReward = async () => {
        const id = currentReward
-        console.log("estoy en handleExcahange id reward",id)
         const response = await services.exchangeReward(id)
         if(response.status === 200){
             handleCloseConfirm()
             fetchRewards()
-            console.log ("he canjeado la reward, yupiiiiii")
         }
 
     }
 
     useEffect(() => {
-        console.log("entro en useEffect")
         fetchRewards();
       }, [showCreate]);
 

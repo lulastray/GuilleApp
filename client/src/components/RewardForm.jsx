@@ -41,11 +41,8 @@ const RewardForm = ({userLogged, setShowCreate, showCreate}) => {
                  const json = await response.json()
                  console.log(json.message)
                  break
-             case 403:
-                 console.log("Ha petado")
-                 break
              default:
-                 console.log("Ha petado sin control")
+                 console.log("something went wrong")
                  break
         } 
         setReward({})

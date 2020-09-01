@@ -42,11 +42,9 @@ export class TasksList extends Component {
     }
 
     async handleDelete(e){
-        console.log("voy a borrar", e.target.id)
         const response = await this.services.changeTaskProgress(e.target.id, "deleted")
         if(response.status === 200){
             this.fetchTasks()
-            console.log("he cambiado el estado a borrado")
         }
     }
     
@@ -72,7 +70,6 @@ export class TasksList extends Component {
                     <Form className="width-1-1 flex flex-column">
                         
                         {this.state.tasks.filter(task=> task.stateProgress !== "deleted").map((theTask, idx) => {         
-                            console.log(theTask.stateProgress)
                             return (<div className="width-1-1 flex flex-direction-row justify-between" key={idx}><Form.Check checked={theTask.stateProgress === "completed"}
                                                                             id={theTask._id}
                                                                             label={theTask.name}
